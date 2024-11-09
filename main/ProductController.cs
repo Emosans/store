@@ -26,4 +26,19 @@ public class ProductController : ControllerBase {
         Store.products.Remove(product);
         return Ok("Product deleted");
     }
+
+    [HttpPut("{id}")]
+    public IActionResult UpdateProduct(int id, [FromBody]Product p){
+        var product=Store.products.FirstOrDefault(p=>p.Id==id);
+
+        if(product==null){
+            return NotFound();
+        }
+
+        product.Name = p.Name;
+        product.Description = p.Description;
+        product.Price = p.Price;
+
+        return Ok("Product updated");
+    }
 }
