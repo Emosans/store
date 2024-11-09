@@ -12,4 +12,5 @@ public class Customer{
 
 public class Store{
     public static List<Product> products= new List<Product>();
+    public static List<Customer> customers= new List<Customer>();
 }
