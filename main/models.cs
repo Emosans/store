@@ -10,7 +10,13 @@ public class Customer{
     public required string Name { get; set; }
 }
 
+public class Orders{
+    public int Id {get; set;}
+    public required string Name { get; set; }
+}
+
 public class Store{
     public static List<Product> products= new List<Product>();
     public static List<Customer> customers= new List<Customer>();
+    public static List<Orders> orders= new List<Orders>();
 }
