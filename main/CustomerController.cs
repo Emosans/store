@@ -17,4 +17,29 @@ public class CustomerController : ControllerBase{
 
         return Ok("Added customer");
     }
+
+    [HttpPut("{id}")]
+    public IActionResult UpdateCustomers(int id,[FromBody]Customer c){
+        var updateCustomerInfo = Store.customers.FirstOrDefault(customer=>customer.Id==id);
+
+        if(updateCustomerInfo==null){
+            return NotFound();
+        }
+
+        updateCustomerInfo.Name = c.Name;
+
+        return Ok("updated information");
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteCustomers(int id){
+        var deleteCustomer = Store.customers.FirstOrDefault(customer=>customer.Id==id);
+
+        if (deleteCustomer==null){
+            return NotFound();
+        }
+
+        Store.customers.Remove(deleteCustomer);
+        return Ok("deleted");
+    }
 }

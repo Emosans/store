@@ -21,4 +21,17 @@ public class OrderController : ControllerBase {
 
         return Ok(currentorder);
     }
+
+    [HttpDelete]
+    public IActionResult DeleteOrders(int id){
+
+        var findOrder = Store.orders.FirstOrDefault(o=>o.Id == id);
+        if (findOrder == null){
+            return NotFound();
+        }
+
+        Store.orders.Remove(findOrder);
+
+        return Ok("Deleted");
+    }
 }
